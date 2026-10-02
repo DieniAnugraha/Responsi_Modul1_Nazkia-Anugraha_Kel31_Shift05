@@ -31,18 +31,88 @@ Endpoints API
 | `PUT` | `/loans/:id` | Mengubah data peminjaman berdasarkan ID |
 | `DELETE` | `/loans/:id` | Menghapus data peminjaman berdasarkan ID |
 
+Contoh Request and Response :
+1. Menampilkan Seluruh Data / Filter Status (GET)
+Endpoint: GET /loans atau dengan filter GET /loans?status=Terlambat
+
+{
+  "success": true,
+  "message": "Berhasil mengambil data peminjaman buku",
+  "count": 1,
+  "data": [
+    {
+      "id": "c0a80112-8941-11ee-b9d1-0242ac120002",
+      "member_name": "Nazkia Anugraha",
+      "book_title": "Pemrograman Node.js",
+      "borrow_date": "2026-03-01",
+      "return_date": "2026-03-08",
+      "status": "Dipinjam"
+    }
+  ]
+}
+
+2. Menambah Data Peminjaman (POST) : 
+Endpoint: POST /loans
+
+{
+  "member_name": "Budi Santoso",
+  "book_title": "Belajar Express & Supabase",
+  "borrow_date": "2026-03-02",
+  "return_date": "2026-03-09",
+  "status": "Dipinjam"
+}
+
+ Response
+{
+  "success": true,
+  "message": "Data peminjaman berhasil ditambahkan",
+  "data": {
+    "id": "8f332c11-92b1-4e22-8110-3b8591f4ae22",
+    "member_name": "Budi Santoso",
+    "book_title": "Belajar Express & Supabase",
+    "borrow_date": "2026-03-02",
+    "return_date": "2026-03-09",
+    "status": "Dipinjam"
+  }
+}
+
+3. Memperbarui Data (PUT)
+Endpoint: PUT /loans/:id
+
+{
+  "status": "Dikembalikan"
+}
+
+Response:
+{
+  "success": true,
+  "message": "Data peminjaman berhasil diperbarui"
+}
+
+4. Menghapus Data (DELETE)
+Endpoint: DELETE /loans/:id
+
+Response :
+{
+  "success": true,
+  "message": "Data peminjaman berhasil dihapus"
+}
+
+
+
+
 #Panduan Instalasi dan Menjalankan Lokal
-1. Clone repo ini:
+Clone repo ini:
    ```bash
    git clone [https://github.com/DieniAnugraha/Responsi_Modul1_Nazkia-Anugraha_Kel31_Shift05.git](https://github.com/DieniAnugraha/Responsi_Modul1_Nazkia-Anugraha_Kel31_Shift05.git)
-2. Install dependency:
+1. Install dependency:
 npm install
-3. Buat file .env di folder utama proyek dan isi dengan kredensial Supabase:
-SUPABASE_URL=[https://jqhxifnmkkzzcvczfvnn.supabase.co](https://jqhxifnmkkzzcvczfvnn.supabase.co)
-SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+2. Buat file .env di folder utama proyek dan isi dengan kredensial Supabase:
+SUPABASE_URL=[https://your-project-id.supabase.co](https://your-project-id.supabase.co)
+SUPABASE_KEY=your-supabase-anon-key
 PORT=3000
-4. Jalankan isi database/schema.sql melalui SQL Editor di Supabase.
-Jalankan server:
+3. Jalankan isi database/schema.sql melalui SQL Editor di Supabase.
+4. Jalankan server:
 npm run dev
 5. API lokal tersedia di http://localhost:3000.
 
